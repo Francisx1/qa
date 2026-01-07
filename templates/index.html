@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickHelp - Intelligent Knowledge Base</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🚀 QuickHelp</h1>
+            <p class="subtitle">Intelligent Knowledge Base with Auto-Clustering</p>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="tabs">
+            <button class="tab active" data-tab="search">🔍 Search</button>
+            <button class="tab" data-tab="ask">💬 Ask Question</button>
+            <button class="tab" data-tab="cluster">📊 Clusters</button>
+            <button class="tab" data-tab="manage">⚙️ Manage</button>
+        </nav>
+
+        <!-- Stats Bar -->
+        <div class="stats-bar" id="statsBar">
+            <div class="stat">
+                <span class="stat-label">Documents:</span>
+                <span class="stat-value" id="docCount">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Words:</span>
+                <span class="stat-value" id="wordCount">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Tags:</span>
+                <span class="stat-value" id="tagCount">0</span>
+            </div>
+        </div>
+
+        <!-- Search Tab -->
+        <div class="tab-content active" id="searchTab">
+            <div class="card">
+                <h2>Search Knowledge Base</h2>
+                <div class="search-form">
+                    <input type="text" id="searchQuery" placeholder="Enter search query..." class="input-large">
+                    <div class="button-group">
+                        <select id="searchMode" class="select">
+                            <option value="hybrid">Hybrid Search</option>
+                            <option value="keyword">Keyword Only</option>
+                            <option value="semantic">Semantic Only</option>
+                        </select>
+                        <button onclick="performSearch()" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+                <div id="searchResults" class="results"></div>
+            </div>
+        </div>
+
+        <!-- Ask Tab -->
+        <div class="tab-content" id="askTab">
+            <div class="card">
+                <h2>Ask a Question</h2>
+                <div class="ask-form">
+                    <textarea id="questionInput" placeholder="Ask a question about your documents..." class="textarea-large"></textarea>
+                    <button onclick="askQuestion()" class="btn btn-primary">Ask Question</button>
+                </div>
+                <div id="answerResult" class="results"></div>
+            </div>
+        </div>
+
+        <!-- Cluster Tab -->
+        <div class="tab-content" id="clusterTab">
+            <div class="card">
+                <h2>Document Clusters</h2>
+                <div class="cluster-controls">
+                    <select id="clusterAlgorithm" class="select">
+                        <option value="hdbscan">HDBSCAN (Automatic)</option>
+                        <option value="kmeans">K-Means</option>
+                        <option value="hierarchical">Hierarchical</option>
+                    </select>
+                    <button onclick="performClustering()" class="btn btn-primary">Generate Clusters</button>
+                </div>
+                <div id="clusterResults" class="results"></div>
+            </div>
+        </div>
+
+        <!-- Manage Tab -->
+        <div class="tab-content" id="manageTab">
+            <div class="card">
+                <h2>Index Documents</h2>
+                <p>Index your markdown documents to make them searchable.</p>
+                <div class="manage-form">
+                    <input type="text" id="docPath" value="./data/documents" placeholder="Document path..." class="input-large">
+                    <button onclick="indexDocuments()" class="btn btn-primary">Index Documents</button>
+                </div>
+                <div id="indexResult" class="results"></div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div id="loadingOverlay" class="loading-overlay hidden">
+            <div class="spinner"></div>
+            <p>Processing...</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

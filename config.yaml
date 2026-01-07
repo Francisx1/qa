@@ -1,0 +1,91 @@
+# QuickHelp Configuration
+
+# Search Settings
+search:
+  # Keyword search (grep-style)
+  keyword:
+    enabled: true
+    case_sensitive: false
+    max_results: 100
+  
+  # Semantic search
+  semantic:
+    enabled: true
+    model: "sentence-transformers/all-MiniLM-L6-v2"
+    top_k: 20
+    similarity_threshold: 0.6
+  
+  # Hybrid search weights
+  hybrid:
+    keyword_weight: 0.4
+    semantic_weight: 0.6
+
+# Clustering Settings
+clustering:
+  # Algorithm: kmeans, hierarchical, hdbscan
+  algorithm: "hdbscan"
+  
+  # Minimum cluster size
+  min_cluster_size: 3
+  
+  # Maximum number of clusters (for kmeans)
+  max_clusters: 20
+  
+  # Re-cluster threshold (number of new documents)
+  recluster_threshold: 50
+  
+  # Cluster naming
+  auto_naming: true
+  use_llm_for_naming: true
+
+# Document Processing
+documents:
+  # Supported formats
+  formats: [".md", ".markdown", ".txt"]
+  
+  # Chunking strategy for large documents
+  chunking:
+    enabled: true
+    chunk_size: 500  # words
+    chunk_overlap: 50  # words
+  
+  # Metadata extraction
+  extract_frontmatter: true
+  extract_tags: true
+
+# RAG Settings
+rag:
+  # LLM provider: openai, deepseek, ollama, local
+  provider: "deepseek"
+  
+  # Model configuration
+  model: "deepseek-chat"  # or "deepseek-coder" for code-related questions
+  temperature: 0.7
+  max_tokens: 500
+  
+  # DeepSeek API configuration
+  deepseek_api_key: "sk-a2e108dd894b4ec0bb2c4454ffb32fba"
+  deepseek_base_url: "https://api.deepseek.com/v1"
+  
+  # Context settings
+  max_context_documents: 5
+  context_window: 4000  # tokens
+  
+  # Citation
+  include_sources: true
+
+# Index Settings
+index:
+  # Storage path
+  path: "./data/index"
+  
+  # Incremental indexing
+  incremental: true
+  
+  # Cache embeddings
+  cache_embeddings: true
+
+# Logging
+logging:
+  level: "INFO"
+  file: "./logs/quickhelp.log"
