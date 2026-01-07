@@ -228,6 +228,11 @@ def cluster():
         clusterer = AutoClusterer(config)
         result = clusterer.fit(docs_for_clustering)
         
+        # Save clusters to disk
+        cluster_path = Path(__file__).parent / "data" / "clusters"
+        clusterer.save(str(cluster_path))
+        print(f"✓ Clusters saved to: {cluster_path}")
+        
         # Format clusters
         formatted_clusters = []
         for cluster in clusterer.clusters:
@@ -250,6 +255,60 @@ def cluster():
             'success': True,
             'clusters': formatted_clusters,
             'count': len(formatted_clusters)
+        })
+        
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
+
+
+@app.route('/api/clusters', methods=['GET'])
+def get_clusters():
+    """Get saved clusters"""
+    try:
+        cluster_path = Path(__file__).parent / "data" / "clusters" / "clusters.json"
+        
+        if not cluster_path.exists():
+            return jsonify({
+                'success': True,
+                'clusters': [],
+                'count': 0,
+                'message': 'No clusters generated yet'
+            })
+        
+        with open(cluster_path, 'r', encoding='utf-8') as f:
+            cluster_data = json.load(f)
+        
+        # Format clusters for frontend
+        formatted_clusters = []
+        for cluster in cluster_data.get('clusters', []):
+            # Get sample documents from doc_indices
+            sample_docs = []
+            doc_indices = cluster.get('doc_indices', [])[:5]  # Get first 5
+            for idx in doc_indices:
+                if idx < len(indexer.documents):
+                    doc = indexer.documents[idx]
+                    sample_docs.append({
+                        'title': doc.title,
+                        'path': doc.path
+                    })
+            
+            formatted_clusters.append({
+                'id': cluster['id'],
+                'name': cluster['name'],
+                'size': cluster['size'],
+                'keywords': cluster.get('keywords', [])[:5],
+                'tags': cluster.get('common_tags', [])[:3],
+                'documents': sample_docs
+            })
+        
+        return jsonify({
+            'success': True,
+            'clusters': formatted_clusters,
+            'count': len(formatted_clusters),
+            'algorithm': cluster_data.get('algorithm', 'unknown')
         })
         
     except Exception as e:

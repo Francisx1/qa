@@ -13,6 +13,11 @@ document.querySelectorAll('.tab').forEach(tab => {
         // Show corresponding content
         const tabName = tab.dataset.tab;
         document.getElementById(tabName + 'Tab').classList.add('active');
+        
+        // Load clusters when switching to clusters tab
+        if (tabName === 'cluster') {
+            loadClusters();
+        }
     });
 });
 
@@ -20,6 +25,24 @@ document.querySelectorAll('.tab').forEach(tab => {
 window.addEventListener('load', () => {
     loadStats();
 });
+
+// Load saved clusters
+async function loadClusters() {
+    const resultsDiv = document.getElementById('clusterResults');
+    
+    try {
+        const response = await fetch('/api/clusters');
+        const data = await response.json();
+        
+        if (data.success && data.clusters && data.clusters.length > 0) {
+            displayClusters(data.clusters, resultsDiv);
+        } else {
+            showMessage(resultsDiv, data.message || 'No clusters available. Click "Run Clustering" to generate.', 'info');
+        }
+    } catch (error) {
+        console.error('Error loading clusters:', error);
+    }
+}
 
 // Enter key handlers
 document.getElementById('searchQuery')?.addEventListener('keypress', (e) => {
