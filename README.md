@@ -16,12 +16,12 @@ Then open: **http://127.0.0.1:5000**
 
 ## Features
 
-- 🔍 **Hybrid Search** - Combines keyword + semantic search for best results
-- 💬 **AI Q&A** - Ask questions, get answers with DeepSeek AI
-- 🎯 **Auto-Clustering** - Automatically organizes documents by similarity
-- 📝 **Markdown Support** - Process markdown files with frontmatter
-- 🏷️ **Tag System** - Organize content with tags
-- 📊 **Web UI** - Modern, responsive interface
+- **Hybrid Search** - Combines keyword + semantic search for best results
+- **AI Q&A** - Ask questions, get answers with DeepSeek AI
+- **Auto-Clustering** - Automatically organizes documents by similarity
+- **Markdown Support** - Process markdown files with frontmatter
+- **Tag System** - Organize content with tags
+- **Web UI** - Modern, responsive interface
 
 ## How It Works
 
@@ -69,9 +69,7 @@ clustering:
 
 ## Documentation
 
-- [User Guide](GUIDE.md) - Complete guide to using QuickHelp
 - [Technical Details](TECHNICAL.md) - Architecture and implementation
-- [Troubleshooting](TROUBLESHOOTING.md) - Common issues and solutions
 
 ## Project Structure
 
@@ -150,11 +148,10 @@ MIT License
 
 ## Support
 
-- Check [Troubleshooting Guide](TROUBLESHOOTING.md)
 - Review configuration in `config.yaml`
 - Check browser console (F12) for errors
 - View server logs in terminal
 
 ---
 
-**Made with ❤️ using Flask, DeepSeek AI, and Modern ML**
+**Made with Flask, DeepSeek AI, and Modern ML**
