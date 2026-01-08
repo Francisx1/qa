@@ -148,6 +148,21 @@ header h1 {
     margin-bottom: 15px;
 }
 
+.card h4 {
+    color: #d4a574;
+    margin: 15px 0 10px 0;
+    font-size: 1.2em;
+}
+
+.card ul {
+    color: #b4b4b4;
+}
+
+.card li {
+    color: #b4b4b4;
+    margin: 5px 0;
+}
+
 /* Forms */
 .search-form,
 .ask-form,
