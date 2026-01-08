@@ -116,7 +116,7 @@ function displaySearchResults(results, container) {
             <div class="result-item">
                 <div class="result-title">
                     ${index + 1}. ${result.title}
-                    <span class="result-score">${result.score.toFixed(3)}</span>
+                    <span class="result-score">${(result.score * 100).toFixed(1)}%</span>
                 </div>
                 <div class="result-content">${result.content}</div>
                 <div class="result-meta">
@@ -183,7 +183,7 @@ function displayAnswer(data, container) {
             html += `
                 <div class="source-item">
                     <strong>[${source.id}] ${source.title}</strong>
-                    <span class="result-score">${source.score.toFixed(3)}</span>
+                    <span class="result-score">${(source.score * 100).toFixed(1)}%</span>
                     <br>
                     <small>${source.path}</small>
                     <br>
@@ -231,12 +231,13 @@ async function performClustering() {
 function displayClusters(clusters, container) {
     let html = `<h3>Generated ${clusters.length} clusters:</h3>`;
     
-    clusters.forEach(cluster => {
+    clusters.forEach((cluster, index) => {
+        const colorClass = `cluster-color-${(index % 6) + 1}`;
         const keywords = cluster.keywords.map(kw => `<span class="keyword">${kw}</span>`).join('');
         const tags = cluster.tags.map(tag => `<span class="tag">#${tag}</span>`).join('');
         
         html += `
-            <div class="cluster-item">
+            <div class="cluster-item ${colorClass}">
                 <div class="cluster-header">
                     <div class="cluster-name">${cluster.name}</div>
                     <div class="cluster-size">${cluster.size} documents</div>

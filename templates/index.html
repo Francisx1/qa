@@ -4,22 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QuickHelp - Intelligent Knowledge Base</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="container">
         <!-- Header -->
         <header>
-            <h1>🚀 QuickHelp</h1>
-            <p class="subtitle">Intelligent Knowledge Base with Auto-Clustering</p>
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <h1>QuickHelp</h1>
+                <p class="subtitle">Your Personalized Intelligent Knowledge Base</p>
+            </div>
         </header>
 
         <!-- Navigation Tabs -->
         <nav class="tabs">
-            <button class="tab active" data-tab="search">🔍 Search</button>
-            <button class="tab" data-tab="ask">💬 Ask Question</button>
-            <button class="tab" data-tab="cluster">📊 Clusters</button>
-            <button class="tab" data-tab="manage">⚙️ Manage</button>
+            <button class="tab active" data-tab="manage"><i class="fas fa-cog"></i> Manage</button>
+            <button class="tab" data-tab="search"><i class="fas fa-search"></i> Search</button>
+            <button class="tab" data-tab="cluster"><i class="fas fa-chart-bar"></i> Clusters</button>
+            <button class="tab" data-tab="ask"><i class="fas fa-lightbulb"></i> QuickHelp</button>
         </nav>
 
         <!-- Stats Bar -->
@@ -39,7 +45,7 @@
         </div>
 
         <!-- Search Tab -->
-        <div class="tab-content active" id="searchTab">
+        <div class="tab-content" id="searchTab">
             <div class="card">
                 <h2>Search Knowledge Base</h2>
                 <div class="search-form">
@@ -60,7 +66,7 @@
         <!-- Ask Tab -->
         <div class="tab-content" id="askTab">
             <div class="card">
-                <h2>Ask a Question</h2>
+                <h2>QuickHelp</h2>
                 <div class="ask-form">
                     <textarea id="questionInput" placeholder="Ask a question about your documents..." class="textarea-large"></textarea>
                     <button onclick="askQuestion()" class="btn btn-primary">Ask Question</button>
@@ -86,7 +92,7 @@
         </div>
 
         <!-- Manage Tab -->
-        <div class="tab-content" id="manageTab">
+        <div class="tab-content active" id="manageTab">
             <div class="card">
                 <h2>Index Documents</h2>
                 <p>Index your markdown documents to make them searchable.</p>
