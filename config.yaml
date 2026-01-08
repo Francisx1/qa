@@ -64,7 +64,7 @@ rag:
   max_tokens: 500
   
   # DeepSeek API configuration
-  deepseek_api_key: "YOUR_DEEPSEEK_API_KEY"
+  deepseek_api_key: "sk-a2e108dd894b4ec0bb2c4454ffb32fba"
   deepseek_base_url: "https://api.deepseek.com/v1"
   
   # Context settings
