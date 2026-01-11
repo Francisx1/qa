@@ -37,6 +37,47 @@ Go to **Ask Question** tab → Type question → Get AI answer with sources
 ### 4. View Clusters
 Go to **Clusters** tab → Select algorithm (HDBSCAN/K-Means/Hierarchical) → Generate
 
+### 5. Evaluate & Visualize Search Performance
+## Search Evaluation & Visualization 
+
+This module is responsible for evaluating and visualizing the performance of different search methods in the system, including keyword search, semantic search, and hybrid search.
+
+### Search Evaluation
+
+**File:** `evaluate_all_methods.py`
+
+This script quantitatively evaluates multiple search strategies by computing clustering and retrieval quality metrics.  
+It is designed to support experimental comparison and offline analysis.
+
+Main evaluation metrics include:
+- Silhouette Score
+- Davies–Bouldin Index
+- Calinski–Harabasz Score
+
+Run the evaluation script:
+```bash
+python evaluate_all_methods.py
+```
+Evaluation results are saved to the data/ directory for further analysis and reporting.
+
+### Search Result Visualization
+
+**File:** `visualize_all_methods.py`
+
+This script visualizes document embeddings and clustering results produced by different search methods.
+It provides an intuitive way to compare semantic structure and cluster quality.
+
+The visualization includes:
+- Dimensionality reduction (e.g., PCA or t-SNE)
+- Cluster-based scatter plots for each search method
+
+Run the visualization script:
+```bash
+python visualize_all_methods.py
+```
+Generated figures are saved to the data/ directory and can be directly used in reports or presentations.
+
+
 ## Configuration
 
 Edit `config.yaml`:
